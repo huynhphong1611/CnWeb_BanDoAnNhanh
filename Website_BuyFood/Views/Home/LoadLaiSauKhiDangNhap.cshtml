@@ -1,0 +1,17 @@
+﻿@using Website_BuyFood.Common;
+@{
+    var session = (UserLogin)Session[Website_BuyFood.Common.CommonConstants.USER_SESSION];
+}
+<!-- login -->
+@if (session == null)
+{
+    <div class="DangNhap btn login-button-2 text-uppercase text-wh">
+        <span class="fa fa-sign-in mr-2"></span>Đăng nhập
+    </div>
+}
+else
+{
+    <div class="text-wh">
+        <a href="#">Xin chào: @session.TenDangNhap</a>
+    </div>
+}

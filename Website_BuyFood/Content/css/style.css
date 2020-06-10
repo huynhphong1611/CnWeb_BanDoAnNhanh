@@ -536,8 +536,8 @@ p.account-w3ls a {
 }
 
 .HienForm {
-    visibility: visible;
-    opacity: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
     transform: scale(1);
 }
 
@@ -1668,4 +1668,9 @@ nav ul li a {
 
 .TimKiem {
     margin-left: 27%;
+}
+.Cong1 {
+    color: red;
+    visibility: hidden;
+    opacity: 0;
 }

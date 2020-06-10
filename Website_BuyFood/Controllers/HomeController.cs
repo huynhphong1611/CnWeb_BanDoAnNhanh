@@ -45,9 +45,14 @@ namespace Website_BuyFood.Controllers
                     status = true
                 });
             }
-            return Json(new {
-                status = false
-            });
+            else
+            {
+                return Json(new
+                {
+                    status = false
+                });
+            }
+            
         }
         public JsonResult DangKy(ThongTinDangKyTaiKhoan tk)
         {
@@ -79,6 +84,10 @@ namespace Website_BuyFood.Controllers
             
 
             return View();
+        }
+        public ActionResult LoadLaiSauKhiDangNhap()
+        {           
+            return PartialView();
         }
     }
 }

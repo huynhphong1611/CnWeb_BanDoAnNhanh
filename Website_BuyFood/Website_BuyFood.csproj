@@ -151,6 +151,7 @@
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\TaiKhoanDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ThemVaoGio.cs" />
     <Compile Include="ViewModel\ThongTinDangKyTaiKhoan.cs" />
     <Compile Include="ViewModel\ThongTinTungMon.cs" />
   </ItemGroup>
@@ -1976,6 +1977,7 @@
     <None Include="packages.config" />
     <Content Include="Views\GioHang\ChiTietGioHang.cshtml" />
     <Content Include="Views\GioHang\TimKiemMonAn.cshtml" />
+    <Content Include="Views\Home\LoadLaiSauKhiDangNhap.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

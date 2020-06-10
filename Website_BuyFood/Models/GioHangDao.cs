@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Website_BuyFood.ViewModel;
@@ -22,6 +24,7 @@ namespace Website_BuyFood.Models
                         where a.MaGioHang == temp.MaGioHang
                         select new ThongTinTungMon()
                         {
+                            MaMon = b.MaMon,
                             TenMon = b.TenMon,
                             DonGia = b.DonGia,
                             LinkAnh = b.LinkAnh,
@@ -29,16 +32,27 @@ namespace Website_BuyFood.Models
                         };
             return model.ToList();
         }
-        public bool ThemGioHang(int makh)
+        public void ThemVaoGioHang(ThemVaoGio temp)
         {
-            var giohang = new GioHang()
+            db.Database.ExecuteSqlCommand("exec ThemVaoGioHang @makh,@mamon",
+                new SqlParameter("makh", temp.MaKH),
+                new SqlParameter("mamon", temp.MaMon)
+            );
+        }
+        public void XoaMonAnTrongGioHang(ThemVaoGio temp)
+        {
+            try
             {
-                MaKH = makh,
-            };
-            db.GioHangs.Add(giohang);
-            int kq = db.SaveChanges();
-            if (kq > 0) return true;
-            return false;
+                db.Database.ExecuteSqlCommand("exec XoaMonAnTrongGioHang @makh,@mamon",
+                    new SqlParameter("makh", temp.MaKH),
+                    new SqlParameter("mamon", temp.MaMon)
+                );
+            }
+            catch
+            {
+
+            }
+
         }
     }
 }
