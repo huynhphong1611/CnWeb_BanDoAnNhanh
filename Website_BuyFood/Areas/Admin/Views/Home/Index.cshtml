@@ -1,0 +1,264 @@
+﻿@using Website_BuyFood.Models
+@model List<MonAn>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+    LoadThongTinIndexAdmin loadThongTinIndexAdmin = new LoadThongTinIndexAdmin();
+    int tongDoanhThu = loadThongTinIndexAdmin.tongDoangThu();
+    int soNguoiDatHang = loadThongTinIndexAdmin.soNguoiDatHang();
+    int soSanPhanDaBan = loadThongTinIndexAdmin.soSanPhamDaBan();
+    int soNguoiDangKi = loadThongTinIndexAdmin.soNguoiDangKi();
+    int soSanPham = loadThongTinIndexAdmin.soSanPhamHienTai();
+
+    List<KhachHang> khachHangs = loadThongTinIndexAdmin.GetKhachHangs();
+
+
+}
+
+<div id="content-home" class="content-fluid">
+    <div class="block-header"><h2>HOME</h2></div>
+    <!-- doanh so -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-money-check-alt"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Tổng doanh thu</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @tongDoanhThu VNĐ
+            </h3>
+        </div>
+    </div>
+    <!-- tong so nguoi da dat hang -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-people-carry"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số người đặt hàng</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @soNguoiDatHang
+            </h3>
+        </div>
+    </div>
+    <!-- tong so nguoi san phan da ban   -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-cart-arrow-down"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số sản phẩm đã bán</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @soSanPhanDaBan
+            </h3>
+        </div>
+    </div>
+    <!-- tong so nguoi truy cap -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-users"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số người truy cập</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                1
+            </h3>
+        </div>
+    </div>
+    <!-- tong so nguoi nguoi da dang ki   -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-user-check"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số người đăng kí</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @soNguoiDangKi
+            </h3>
+        </div>
+    </div>
+    <!-- tong so san pham   -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fab fa-product-hunt"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số sản phẩm</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @soSanPham
+            </h3>
+        </div>
+    </div>
+</div>
+<div id="graph-home" class="graph-fluid">
+    <div class="block-header">
+        <h2>BIỂU ĐỒ DOANH THU</h2>
+        <!-- <button class="graph-doanh-thu-thang">Tháng</button>
+        <button class="graph-doanh-thu-năm">Năm</button> -->
+    </div>
+    <div id="graph-doanh-thu">
+        <script type="text/javascript">
+            drawGrahp();
+        </script>
+    </div>
+</div>
+<div id="id-content-product" class="content-product">
+    <div class="content-header" style="color: black; text-align: center; font-size: 30px; font-family: monospace;">SẢN PHẨM</div>
+    <div class="image-gird">
+        <div class="gird-box" data-toggle="modal" data-target="#exampleModal" onclick="addProduct()">
+            <img class="image-add-product" src="/Content/ContentAdmin/img/icon-add.png" />
+        </div>
+        @{
+            foreach (MonAn monAn in Model)
+            {
+                <div class="gird-box">
+                    <img src="~/Content/images/@monAn.LinkAnh">
+                    <p style="color: black; text-align: center;">@monAn.TenMon Giá @monAn.DonGia VNĐ</p>
+
+                </div>
+            }
+        }
+    </div>
+</div>
+<div id="id-content-user" class="content-user">
+    <div class="content-header" style="color: black; text-align: center; font-size: 30px; font-family: monospace;">KHÁCH HÀNG</div>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Tên khách hàng</th>
+            <th>Email</th>
+            <th>Sản phẩm đã mua</th>
+        </tr>
+
+        @{ 
+            int i = 0;
+            string email = "@gmail.com";
+            foreach (KhachHang khachHang in khachHangs)
+            {
+                i += 1;
+                khachHang.TenDangNhap += email;
+                int ramdom = new Random().Next(0, 10);
+                <tr>
+                    <td>@i</td>
+                    <td>@khachHang.HoTen</td>
+                    <td>@khachHang.TenDangNhap</td>
+                    <td>@ramdom</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<div id="id-content-order">
+    <div class="content-header" style="color: black; text-align: center; font-size: 30px; font-family: monospace;">ĐƠN ĐẶT HÀNG</div>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Tên khách hàng</th>
+            <th>Email</th>
+            <th>Đặt sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Địa chỉ</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Phòng Văn Huỳnh</td>
+            <td>admin1@email.com</td>
+            <td>Humberger bò</td>
+            <td>2</td>
+            <td>Hoàn Kiếm - Hà Nội</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Nguyễn Thị Ngọc</td>
+            <td>admin1@email.com</td>
+            <td>Humberger bò</td>
+            <td>2</td>
+            <td>Hoàn Kiếm - Hà Nội</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Bùi Trung Tú</td>
+            <td>admin1@email.com</td>
+            <td>Humberger bò</td>
+            <td>2</td>
+            <td>Hoàn Kiếm - Hà Nội</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Trần Tuấn Anh</td>
+            <td>admin1@email.com</td>
+            <td>Humberger bò</td>
+            <td>2</td>
+            <td>Hoàn Kiếm - Hà Nội</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Nguyễn Ngọc Long</td>
+            <td>admin1@email.com</td>
+            <td>Humberger bò</td>
+            <td>2</td>
+            <td>Cầu Giấy - Hà Nội</td>
+        </tr>
+    </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="~/Areas/Admin/Controllers/" method="post">
+                    <div class="form-group">
+                        <label for="productName">Tên sản phẩm</label>
+                        <input type="name" class="form-control" id="productName">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Đơn giá</label>
+                        <div class="row">
+                            <div class="col">
+                                <input type="price" class="form-control" id="price">
+                            </div>
+                            <div class="col col-lg-3">
+                                VNĐ
+                            </div>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="photo">Hình ảnh sản phẩm</label>
+                            <input type="file" class="form-control-file" id="photo">
+                        </div>
+                    </form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">Lưu sản phẩm</button>
+            </div>
+        </div>
+    </div>
+</div>
+

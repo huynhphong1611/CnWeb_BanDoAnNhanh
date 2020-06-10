@@ -1,0 +1,4 @@
+# Huynh config nhung file khong up len git 
+.vs/*
+Website_BuyFood/obj/*
+Website_BuyFood/bin/*

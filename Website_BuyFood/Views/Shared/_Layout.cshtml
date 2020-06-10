@@ -1,0 +1,329 @@
+﻿@using Website_BuyFood.Common;
+@using Website_BuyFood.Models;
+@model Website_BuyFood.Models.TaiKhoan
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FastFood King</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <!-- css file -->
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="/Content/css/bootstrap.css">
+    <!-- css slider -->
+    <link href="/Content/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+    <!-- css của mình -->
+    <link rel="stylesheet" href="/Content/css/style.css" type="text/css" media="all" />
+    <!-- Font-Awesome-Icons-CSS -->
+    <link href="/Content/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <!-- header -->
+    <header id="home">
+        <!-- top-bar -->
+        <div class="top-bar py-2 border-bottom">
+            <div class="container">
+                <div class="row middle-flex">
+                    <div class="col-xl-7 col-md-5 top-social-agile mb-md-0 mb-1 text-lg-left text-center">
+                        <div class="row">
+                            <div class="col-xl-3 col-6 header-top_w3layouts">
+                                <p class="text-da">
+                                    <span class="fa fa-map-marker mr-2"></span>234 Hoàng Quốc Việt, Hà Nội
+                                </p>
+                            </div>
+                            <div class="col-xl-3 col-6 header-top_w3layouts">
+                                <p class="text-da">
+                                    <span class="fa fa-phone mr-2"></span>032 1111111
+                                </p>
+                            </div>
+                            <div class="col-xl-6"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-md-7 top-social-agile text-md-right text-center pr-sm-0 mt-md-0 mt-2">
+                        <div class="row middle-flex">
+                            <div id="DangNhap" class="col-lg-5 col-4 top-w3layouts p-md-0 text-right">
+                                @{
+                                    var session = (UserLogin)Session[Website_BuyFood.Common.CommonConstants.USER_SESSION];
+                                }
+                                <!-- login -->
+                                @if (session == null)
+                                {
+                                    <div class="DangNhap btn login-button-2 text-uppercase text-wh">
+                                        <span class="fa fa-sign-in mr-2"></span>Đăng nhập
+                                    </div>
+                                }
+                                else
+                                {     
+                                    <div class="text-wh">
+                                        <a href="#">Xin chào: @session.TenDangNhap</a>
+                                    </div>                                  
+                                }
+
+                                <!-- //login -->
+                            </div>
+                            <div class="col-lg-7 col-8 social-grid-w3">
+                                <!-- social icons -->
+                                <ul class="top-right-info">
+                                    <li>
+                                        <p>Social:</p>
+                                    </li>
+                                    <li class="facebook-w3">
+                                        <a href="#facebook">
+                                            <span class="fa fa-facebook-f"></span>
+                                        </a>
+                                    </li>
+                                    <li class="twitter-w3">
+                                        <a href="#twitter">
+                                            <span class="fa fa-twitter"></span>
+                                        </a>
+                                    </li>
+                                    <li class="google-w3">
+                                        <a href="#google">
+                                            <span class="fa fa-google-plus"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- //social icons -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- //top-bar -->
+    <!-- header 2 -->
+    <!-- navigation -->
+    <div class="main-top py-1">
+        <div class="container">
+            <div class="nav-content">
+                <!-- logo -->
+                <h1>
+                    <a id="logo" class="logo" href="/Home">
+                        <img src="/Content/images/logo.png" alt="" class="img-fluid"><span>FastFood</span>King
+                    </a>
+                </h1>
+                <!-- //logo -->
+                <!-- nav -->
+                <div class="nav_web-dealingsls">
+                    <nav>
+                        <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop" />
+                        <ul class="menu">
+                            <li><a href="/Home" class="PageNow">Trang chủ</a></li>
+                            <li><a href="/Menu">Menu</a></li>
+                            <li>
+                                <!-- First Tier Drop Down -->
+                                <label for="drop-3" class="toggle toogle-2">
+                                    Pages <span class="fa fa-angle-down"
+                                                aria-hidden="true"></span>
+                                </label>
+                                <a href="#pages">Khác <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                <input type="checkbox" id="drop-3" />
+                                <ul>
+                                    @RenderSection("Them", required: false)
+                                    <li><a class="drop-text DangNhap" href="#">Đăng nhập</a></li>
+                                    <li><a class="drop-text DangKy" href="#">Đăng ký</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/About">Tìm hiểu</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- //nav -->
+            </div>
+        </div>
+    </div>
+    <!-- //navigation -->
+    <!-- //header 2 -->
+    <!-- đăng nhập -->
+    <div class="login p-4 mx-auto HienDangNhap">
+        <h5 class="text-center mb-4">CHÀO MỪNG TRỞ LẠI</h5>
+        <form>
+            <div class="Close-DN">
+                <a><span class="fa fa-times"></span></a>
+            </div>
+            <div class="form-group">
+                <label>Tên đăng nhập:</label>
+                <input type="text" class="form-control" id="TenDangNhap" placeholder="" required="">
+            </div>
+            <div class="form-group">
+                <label class="mb-2">Mật khẩu:</label>
+                <input type="password" class="form-control" id="MatKhau" placeholder="" required="">
+            </div>
+            <div id="btn-DangNhap" class="btn submit mb-4">Đăng nhập</div>
+            <p class="forgot-w3ls text-center mb-3">
+                <a href="#" class="text-da">Quên mật khẩu?</a>
+            </p>
+            <p class="account-w3ls text-center text-da">
+                Bạn chưa có tài khoản?
+                <a href="#" class="DangKy">Tạo mới 1 cái</a>
+            </p>
+        </form>
+    </div>
+    <!-- hết đăng nhập -->
+    <!-- đăng ký -->
+    <div class="login p-4 mx-auto HienDangKy">
+        <h5 class="text-center mb-4">CHÀO MỪNG NGƯỜI MỚI</h5>
+        <form action="#" method="post">
+            <div class="Close-DK">
+                <a><span class="fa fa-times"></span></a>
+            </div>
+            <div class="form-group">
+                <label>Tên của bạn:</label>
+                <input type="text" class="form-control" id="HoTen" placeholder="" required="">
+            </div>
+            <div class="form-group">
+                <label>SDT:</label>
+                <input type="text" class="form-control" id="sdt" placeholder="" required="">
+            </div>
+            <div class="form-group">
+                <label>Tên đăng nhập:</label>
+                <input type="text" class="form-control" id="TenDangNhapDK" placeholder="" required="">
+            </div>
+            <div class="form-group">
+                <label class="mb-2">Mật khẩu:</label>
+                <input type="password" class="form-control" id="MatKhauDK1"  placeholder=""
+                       required="">
+            </div>
+            <div class="form-group">
+                <label>Nhập lại mật khẩu:</label>
+                <input type="password" class="form-control" id="MatKhauDK2"placeholder=""
+                       required="">
+            </div>
+            <div id="btn-DangKy" class="btn submit mb-4">Đăng ký</div>
+            <p class="text-center">
+                <a href="#" class="text-da">Click vào đăng ký có nghĩa là bạn đã đồng ý với điều khoản của chúng tôi.</a>
+            </p>
+        </form>
+    </div>
+    <!-- hết đăng ký -->
+    <!-- làm mờ -->
+    <div class="lammo"></div>
+    @RenderBody()
+    <!-- footer -->
+    <footer class="py-5">
+        <div class="container py-xl-4">
+            <div class="row footer-top">
+                <div class="col-lg-4 footer-grid_section_1its footer-text">
+                    <!-- logo -->
+                    <h2>
+                        <a class="logo text-wh" href="/Home">
+                            <img src="/Content/images/logo.png" alt="" class="img-fluid"><span>FastFood</span> King
+                        </a>
+                    </h2>
+                    <!-- //logo -->
+                    <p class="mt-lg-4 mt-3 mb-lg-5 mb-4">
+                        Chúng tôi muốn xây dựng một hệ thống nhà hàng được biết đến bởi sự đồng nhất trong chất lượng và sự đồng bộ ở khâu chuẩn bị, các món burger, và thức uống có vị giống hệt nhau cho dù nó được phục vụ tại nhà hàng ở Mỹ hay Việt Nam.
+                    </p>
+                    <!-- social icons -->
+                    <ul class="top-right-info">
+                        <li>
+                            <p>Theo dõi:</p>
+                        </li>
+                        <li class="facebook-w3">
+                            <a href="#facebbok">
+                                <span class="fa fa-facebook-f"></span>
+                            </a>
+                        </li>
+                        <li class="twitter-w3">
+                            <a href="#twitter">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                        <li class="google-w3">
+                            <a href="#google">
+                                <span class="fa fa-google-plus"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- //social icons -->
+                </div>
+                <div class="col-lg-4 footer-grid_section_1its my-lg-0 my-sm-4 my-4">
+                    <div class="footer-title">
+                        <h3>Liên hệ với chúng tôi</h3>
+                    </div>
+                    <div class="footer-text mt-4">
+                        <p>Địa chỉ : 236 - Hoàng Quốc Việt, Cổ Nhuế, Bắc Từ Liêm, Hà Nội.</p>
+                        <p class="my-2">Điện thoại : 032 00392131</p>
+                        <p>Email : <a href="mailto:info@example.com">fastfoodking@gmail.com</a></p>
+                    </div>
+                    <div class="footer-title mt-4 pt-md-2">
+                        <h3>Phương thức thanh toán</h3>
+                    </div>
+                    <ul class="list-unstyled payment-links mt-4">
+                        <li>
+                            <a href="login.html"><img src="/Content/images/pay2.png" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="login.html"><img src="/Content/images/pay5.png" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="login.html"><img src="/Content/images/pay1.png" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="login.html"><img src="/Content/images/pay4.png" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 footer-grid_section_1its">
+                    <div class="footer-title">
+                        <h3>Phản hồi của bạn</h3>
+                    </div>
+                    <div class="info-form-right mt-4 p-0">
+                        <form action="#" method="post">
+                            <div class="row">
+                                <div class="col-lg-6 form-group mb-2 pr-lg-1">
+                                    <input type="text" class="form-control" name="Name" placeholder="Tên" required="">
+                                </div>
+                                <div class="col-lg-6 form-group mb-2 pl-lg-1">
+                                    <input type="text" class="form-control" name="Phone" placeholder="SĐT"
+                                           required="">
+                                </div>
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="email" class="form-control" name="Email" placeholder="Email" required="">
+                            </div>
+                            <div class="form-group mb-2">
+                                <textarea name="Comment" class="form-control" placeholder="Phản hồi"
+                                          required=""></textarea>
+                            </div>
+                            <button type="submit" class="btn submit-contact ml-auto">Phản hồi</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    <!-- dịch về đầu trang -->
+    <a href="#home" class="move-top text-center">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </a>
+    <!-- dịch về đầu trang -->
+    <!-- các file script -->
+    <script src="/Content/js/jquery.js"></script>
+    <script src="/Content/js/javascript.js"></script>
+    <script src="/Scripts/mustache.min.js"></script>
+    <script src="/Scripts/Ajax.js"></script>
+    <!-- hết các file script -->
+</body>
+    
+</html>

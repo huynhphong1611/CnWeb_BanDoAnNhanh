@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "AdminLayout";
+}
+
+
+<!DOCTYPE html>
+<!-- HuynhPV tao giao dien wweb  -->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <!-- custom theme  -->
+    <link rel="stylesheet" href="/Content/ContentAdmin/css/style.css">
+    <link rel="stylesheet" href="/Content/ContentAdmin/fontawesome/css/all.css">
+    <!-- js -->
+    <script src="/Content/ContentAdmin/js/index.js"></script>
+    <script src="/Content/ContentAdmin/js/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- overlay -->
+    <div id="overlay" onclick="onClickMenuHeader()"></div>
+    <!-- ------------------------- -->
+    <!-- day la header trên cùng   -->
+    <!-- ------------------------- -->
+    <div class="header">
+        <div class="header-content">
+            <!-- thanh controller -->
+            <div class="nav-control" onclick="onClickMenuHeader()">
+                <span id="icon-bar-nav" style="text-align: center; font-size: 30px; color: black;">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </div>
+            <!-- cac icon ben phai  -->
+            <div class="header-right" onclick="onClickNotificationIconHeader()">
+                <a>
+                    <i class="fas fa-bell"></i>
+                    <span class="count-notification">9 Thông báo</span>
+                </a>
+            </div>
+            <ul id="id-popup-notification" class="popup-notification">
+                <li class="header-notification">
+                    Thông báo
+                </li>
+                <li class="body-notification">
+                    <div class="list-notification">
+                        <ul>
+                            <li>
+                                <div>
+                                    <span style="text-align: center; font-size: 20px; color: coral;">
+                                        <i class="fas fa-user-check"></i>
+                                    </span>
+                                </div>
+                                <div>
+                                    <p style="text-align: right; color: black;">Đã có người đăng kí</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- ------------------------- -->
+    <!-- day la  action bar menu   -->
+    <!-- ------------------------- -->
+    <div class="action-bar-menu" id="actionbar-menu">
+        <ul>
+            <li>
+                <a href="~/Admin/Home/Index"><i class="fas fa-house-user"></i>Home</a>
+            </li>
+            <li>
+                <a onclick="onClickProduct()"><i class="fab fa-product-hunt"></i>Sản phẩm</a>
+            </li>
+            <li>
+                <a onclick="onClickUsers()"><i class="fas fa-users"></i>Khách hàng</a>
+            </li>
+            <li>
+                <a onclick="onClickOrders()"><i class="fab fa-first-order"></i>Đơn đặt hàng</a>
+            </li>
+        </ul>
+    </div>
+    <!-- ------------------------- -->
+    <!-- day la  content   -->
+    <!-- the section de phan biet phan nay vs câ phan khac  -->
+    <!-- ------------------------- -->
+    <section class="content">
+        @RenderBody()
+    </section>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

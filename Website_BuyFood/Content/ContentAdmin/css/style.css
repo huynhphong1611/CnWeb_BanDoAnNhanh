@@ -1,0 +1,226 @@
+/* created by HuynhPV */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+body {
+    background-color: #F3F3F9;
+    color: #76838f;
+    font-family: 'Roboto', sans-serif ;
+}
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width ) */
+    height: 100%; /* Full height ) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); 
+    z-index: 2; 
+    cursor: pointer; 
+  }
+.header {
+    background: #fff;
+    /* z- index cang cao thi se de len the co gia tri thap hon  */
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+}
+.header .header-content {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+/* css cho thanh menu header  */
+.nav-control {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
+    /* dung de hien ban  tay  */
+    cursor: pointer; 
+}
+/* css cho header right  */
+.header-right {
+    /* tam bo thong bao */
+    visibility: hidden;
+    float: right;
+    width: 150px;
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    margin-right: 50px;
+}
+.header-right :hover {
+    cursor: pointer;
+}
+.popup-notification {
+    display: none;
+}
+.popup-notification-click {
+    position: absolute;
+    display: block;
+    margin-top: 15px;
+    right: 250px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid white!important;
+}
+/* 
+ css nay cho action bar 
+*/
+.action-bar-menu {
+    z-index: 5;
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    top: 43px;
+    left: -250px;
+    background: #fff;
+    transition: all .5s ease;
+}
+.action-bar-menu ul a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 18px;
+    color: black;
+    padding-left: 40px;
+    transition: .4s;
+}
+.action-bar-menu ul li:hover a {
+    padding-left: 50px;
+    cursor: pointer;
+}
+.action-bar-menu ul a i {
+    margin-right: 16px;
+}
+.action-bar-menu-hide {
+    left: 0;
+}
+/* css cho content */
+.content {
+    margin: 60px 10px 10px 10px;
+    transition: 0.5s;
+    height: 100%;
+    width: 100%;
+    float: left;
+}
+.content .content-fluid {
+    width: 46%;
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.content .block-header {
+    padding-top: 20px;
+    color: black !important;
+}
+h2 {
+    font-family: inherit;
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* css cho item home  */
+.item-home {
+    float: left;
+    width: 250px;
+    height: 100px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid white!important;
+    margin: 20px 20px 20px 0px;
+}
+.item-home .img-item {
+    float: left;
+    height: 100%;
+    width: 25%;
+    padding: 20px 10px 10px 10px;
+}
+.item-home .text-item {
+    float: right;
+    line-height: normal;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+/* css cho do thi */
+.content .graph-fluid {
+    width: 48%;
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+#graph-doanh-thu {
+    float: left;
+    height: 388px;
+    width: 630px;
+    margin: 20px 20px 20px 0px;
+    border-radius: 5px;
+    border: 1px solid white!important;
+}
+/* css cho tab san pham  */
+.content #id-content-product {
+    display: none;
+}
+.image-gird {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+img {
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+}
+.image-add-product {
+    width: 100px;
+    height: 100px;
+    margin: 90px 80px 90px 90px;
+}
+.image-add-product:hover {
+    cursor: pointer;
+}
+img:hover {
+    opacity: .5;
+    transition: .9s;
+}
+/* css cho tab khach hang  */
+.content #id-content-user {
+    display: none;
+}
+table {
+    margin-left: 350px;
+    color: #000;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    border: solid 1px #aaa999;
+    word-wrap: break-word;
+  }
+  table tr th {
+    padding: 5px;
+    border: solid 1px #aaa999;
+  }
+  table tr td {
+    max-width: 200px;
+    padding: 5px;
+    border: solid 1px #aaa999;
+  }
+/* css cho đơn đặt hàng */
+.content #id-content-order {
+    display: none;
+}
