@@ -15,8 +15,15 @@
        if (maKH != 0) {
            LoadGioHang(maKH);
        }
+    })  
+    $('.Giam').click(function () {
+        MaMon = $(this).data('id');
+        GiamSoLuong(maKH, MaMon);        
     })
-   
+    $('.Tang').click(function () {
+        MaMon = $(this).data('id');
+        ThemSoLuong(maKH, MaMon);
+    })
     $(".XoaMonAn").click(function () {        
         MaMonAn = $(this).data('ma');
         XoaMonAnTrongGioHang(maKH, MaMonAn);
@@ -37,7 +44,7 @@
                 if (result.status == true) {
                     $('.HienDangNhap').removeClass('HienForm');
                     $('.lammo').removeClass('HienForm');
-                    $("#DangNhap").hide();
+                    location.reload();
                     
                 } else {
                     alert('Đăng nhập không chính xác bạn ơi');
@@ -91,7 +98,6 @@
         });
     }
 
-    
     function XoaMonAnTrongGioHang(MaKH, MaMon) {
         var ThemVaoGio = {
             MaKH: MaKH,
@@ -109,4 +115,40 @@
                 }
             }
         });
-    }
+}
+function ThemSoLuong(MaKH, MaMon) {
+    var ThemVaoGio = {
+        MaKH: MaKH,
+        MaMon: MaMon
+    };
+    $.ajax({
+        url: "/GioHang/ThemSoLuong",
+        data: JSON.stringify(ThemVaoGio),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            if (result.status == true) {
+                LoadGioHang(MaKH);
+            }
+        }
+    });
+}
+function GiamSoLuong(MaKH, MaMon) {
+    var ThemVaoGio = {
+        MaKH: MaKH,
+        MaMon: MaMon
+    };
+    $.ajax({
+        url: "/GioHang/GiamSoLuong",
+        data: JSON.stringify(ThemVaoGio),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            if (result.status == true) {
+                LoadGioHang(MaKH);
+            }
+        }
+    });
+}

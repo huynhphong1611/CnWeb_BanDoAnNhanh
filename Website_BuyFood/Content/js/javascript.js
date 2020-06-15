@@ -5,17 +5,20 @@ $(function () {
 		$('.HienDangNhap').addClass('HienForm');
 		$('.lammo').addClass('HienForm');
 	});
-	$('.Close-DN,.lammo').click(function(event) {
-		$('.HienDangNhap').removeClass('HienForm');
-		$('.lammo').removeClass('HienForm');
-	});
+	
 	$('.DangKy').click(function(event) {
 		// xử lí class
 		$('.HienDangKy').addClass('HienForm');
 		$('.lammo').addClass('HienForm');
 	});
-	$('.Close-DK,.lammo').click(function(event) {
-		$('.HienDangKy').removeClass('HienForm');
-		$('.lammo').removeClass('HienForm');
-	});
+	$('.lammo').click(function(event) {
+        $('.HienDangNhap').removeClass('HienForm');
+        $('.HienDangKy').removeClass('HienForm');
+        $('.lammo').removeClass('HienForm');
+        $('.ThongTinDatHang').removeClass('HienForm');
+    });
+    $('#ThanhToan').click(function (event) {   
+        $('.ThongTinDatHang').addClass('HienForm');
+        $('.lammo').addClass('HienForm');
+    });
 });

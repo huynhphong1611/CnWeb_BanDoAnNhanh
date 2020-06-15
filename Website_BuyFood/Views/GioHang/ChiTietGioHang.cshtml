@@ -2,14 +2,21 @@
 @using Website_BuyFood.Common;
 @using Website_BuyFood.Models
 @{
-    var session = (UserLogin)Session[Website_BuyFood.Common.CommonConstants.USER_SESSION];
     int TongTien = 0;
-    
+    var session = (UserLogin)Session[Website_BuyFood.Common.CommonConstants.USER_SESSION];
+    KhachHangDao KHD = new KhachHangDao();
+    int maKH = 0;
+
+    if (session != null)
+    {
+        maKH = KHD.getMaKH(session.TenDangNhap);
+    }
 }
+
 <div class="content">
     <div class="module">
         <div class="module-head">
-            <h4 class="p-mask"><span>GIỎ HÀNG CỦA BẠN:</span></h4>
+            <h4 class="p-mask" ><span>GIỎ HÀNG CỦA BẠN:</span></h4>
         </div>
         <div class="module-body">
             <table class="table table-striped table-bordered table-condensed">
@@ -26,7 +33,13 @@
                     {
                         <tr>
                             <td>@item.TenMon</td>
-                            <td><a href="#Gio">@item.SoLuong</a></td>
+
+                            <td>
+                            <a class="Giam" data-id="@item.MaMon" href="#Gio"><i class="fa fa-minus-circle"></i> &ensp;</a>
+                            <a href="#Gio">@item.SoLuong</a>
+                            <a class="Tang" data-MaKH="@maKH" data-id="@item.MaMon" href="#Gio">&ensp; <i class="fa fa-plus-circle"></i></a>
+                            </td>
+                            
                             <td>@String.Format("{0:0,0 vnđ}", item.DonGia)</td>
                             <td><a class="XoaMonAn" data-ma="@item.MaMon" href="#Gio">Xóa</a></td>
                             @{
@@ -49,9 +62,6 @@
     <span class="fa fa-caret-right ml-1" aria-hidden="true"></span>
 </a>
 <!-- Render body -->
-<script>
-    $("#ThanhToan").click(function () {
-        alert("Đơn hàng sẽ được xử lý sớm nhất");
-    })
-</script>
+
 <script src="/Scripts/Ajax.js"></script>
+<script src="~/Content/js/javascript.js"></script>

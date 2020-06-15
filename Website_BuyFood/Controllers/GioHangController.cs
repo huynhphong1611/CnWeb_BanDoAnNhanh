@@ -45,5 +45,27 @@ namespace Website_BuyFood.Controllers
                 status = true
             });
         }
+        public JsonResult GiamSoLuong(ThemVaoGio temp)
+        {
+            GHD.GiamSoLuong(temp);
+            return Json(new
+            {
+                status = true
+            });
+        }
+        public JsonResult ThemSoLuong(ThemVaoGio temp)
+        {
+            GHD.TangSoLuong(temp);
+            return Json(new
+            {
+                status = true
+            });
+        }
+        [HttpPost]
+        public ActionResult DatHang(string HoTen,string SDT,string DiaChi)
+        {
+            GHD.DatHang(1, HoTen, SDT, DiaChi);
+            return Redirect("/Home");
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -17,24 +18,47 @@ namespace Website_BuyFood.Models
         }
         public List<ThongTinTungMon> HienThiGioHang(int MaKH)
         {
-            GioHang temp = db.GioHangs.Find(MaKH);
-            var model = from a in db.ChiTiet_GioHang
-                        join b in db.MonAns
-                        on a.MaMonAn equals b.MaMon
-                        where a.MaGioHang == temp.MaGioHang
-                        select new ThongTinTungMon()
-                        {
-                            MaMon = b.MaMon,
-                            TenMon = b.TenMon,
-                            DonGia = b.DonGia,
-                            LinkAnh = b.LinkAnh,
-                            SoLuong = a.SoLuong
-                        };
-            return model.ToList();
+            try
+            {
+                GioHang temp = db.GioHangs.SqlQuery("select * from GioHang where TinhTrang = 0").FirstOrDefault<GioHang>();
+                var model = from a in db.ChiTiet_GioHang
+                            join b in db.MonAns
+                            on a.MaMonAn equals b.MaMon
+                            where a.MaGioHang == temp.MaGioHang
+                            select new ThongTinTungMon()
+                            {
+                                MaMon = b.MaMon,
+                                TenMon = b.TenMon,
+                                DonGia = b.DonGia,
+                                LinkAnh = b.LinkAnh,
+                                SoLuong = a.SoLuong
+                            };
+
+                return model.ToList();
+            }
+            catch
+            {
+                List<ThongTinTungMon> kq = new List<ThongTinTungMon>();
+                return kq;
+            }                                                      
         }
         public void ThemVaoGioHang(ThemVaoGio temp)
         {
             db.Database.ExecuteSqlCommand("exec ThemVaoGioHang @makh,@mamon",
+                new SqlParameter("makh", temp.MaKH),
+                new SqlParameter("mamon", temp.MaMon)
+            );
+        }
+        public void TangSoLuong(ThemVaoGio temp)
+        {
+            db.Database.ExecuteSqlCommand("exec TangSoLuong @makh,@mamon",
+                new SqlParameter("makh", temp.MaKH),
+                new SqlParameter("mamon", temp.MaMon)
+            );
+        }
+        public void GiamSoLuong(ThemVaoGio temp)
+        {
+            db.Database.ExecuteSqlCommand("exec GiamSoLuong @makh,@mamon",
                 new SqlParameter("makh", temp.MaKH),
                 new SqlParameter("mamon", temp.MaMon)
             );
@@ -52,7 +76,15 @@ namespace Website_BuyFood.Models
             {
 
             }
-
+        }
+        public void DatHang(int MaKH, string HoTen,string SDT, string DiaChi)
+        {
+            db.Database.ExecuteSqlCommand("exec DatHang @makh,@hoten,@sdt,@diachi",
+                new SqlParameter("makh", MaKH),
+                new SqlParameter("hoten", HoTen),
+                new SqlParameter("sdt", SDT),
+                new SqlParameter("diachi", DiaChi)
+            );
         }
     }
 }
