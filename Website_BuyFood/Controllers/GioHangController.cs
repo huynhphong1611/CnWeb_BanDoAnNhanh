@@ -65,7 +65,7 @@ namespace Website_BuyFood.Controllers
         public ActionResult DatHang(string HoTen,string SDT,string DiaChi)
         {
             GHD.DatHang(1, HoTen, SDT, DiaChi);
-            return Redirect("/Home");
+            return RedirectToAction("Menu","Home");
         }
     }
 }

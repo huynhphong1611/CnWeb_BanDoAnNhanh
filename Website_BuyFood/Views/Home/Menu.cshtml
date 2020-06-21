@@ -11,12 +11,13 @@
     var session = (UserLogin)Session[Website_BuyFood.Common.CommonConstants.USER_SESSION];
     KhachHangDao KHD = new KhachHangDao();
     int maKH = 0;
-   
-    if(session != null)
+    KhachHang kh = new KhachHang();
+    if (session != null)
     {
-        maKH = KHD.getMaKH(session.TenDangNhap);        
+        maKH = KHD.getMaKH(session.TenDangNhap);
+        kh = KHD.LayThongTinKhachHang(maKH);
     }
-    
+
 }
 
 <!-- banner -->
@@ -43,20 +44,23 @@
     <h5 class="text-center mb-4">Thông tin đơn hàng</h5>
     @using (Html.BeginForm("DatHang", "GioHang"))
     {
-         <div class="form-group">
-            <label>Họ và tên:</label>
-            <input type="text" class="form-control" name="HoTen" placeholder="" required="">
-        </div>
-        <div class="form-group">
-            <label class="mb-2">Số điện thoại:</label>
-            <input type="text" class="form-control" name="SDT" placeholder="" required="">
-        </div>
-        <div class="form-group">
-            <label class="mb-2">Địa chỉ:</label>
-            <input type="text" class="form-control" name="DiaChi" placeholder="" required="">
-        </div>
-        <button type="submit" class="btn submit mb-4">Xác nhận</button>
-    }           
+        if (maKH != 0)
+        {
+            <div class="form-group">
+                <label>Họ và tên:</label>
+                <input type="text" class="form-control" name="HoTen" value="@kh.HoTen" required="">
+            </div>
+            <div class="form-group">
+                <label class="mb-2">Số điện thoại:</label>
+                <input type="text" class="form-control" name="SDT" value="@kh.SDT" required="">
+            </div>
+            <div class="form-group">
+                <label class="mb-2">Địa chỉ:</label>
+                <input type="text" class="form-control" name="DiaChi" value="" required="">
+            </div>
+            <button type="submit" class="btn submit mb-4">Xác nhận</button>
+        }
+    }
 </div>
 <!-- menu -->
 <section class="portfolio py-5">

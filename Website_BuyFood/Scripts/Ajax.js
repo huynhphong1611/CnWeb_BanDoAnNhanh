@@ -68,8 +68,9 @@
             success: function (result) {
                 if (result.status == true) {
                     alert('Đăng ký thành công');
-                    $('.HienDangNhap').removeClass('HienForm');
+                    $('.HienDangKy').removeClass('HienForm');
                     $('.lammo').removeClass('HienForm');
+                    location.reload();
                 } else {
                     alert('Đăng ký thất bại');
                 }

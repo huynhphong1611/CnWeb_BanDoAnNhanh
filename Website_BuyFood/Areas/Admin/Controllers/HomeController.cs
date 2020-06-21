@@ -15,7 +15,6 @@ namespace Website_BuyFood.Areas.Admin.Controllers
         {
             var modelSanPham = context.MonAns.Where(x => x.TenMon != null).ToList();
             return View(modelSanPham);
-
         }
 
         public ActionResult Login()

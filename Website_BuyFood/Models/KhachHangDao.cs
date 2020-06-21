@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -18,6 +20,12 @@ namespace Website_BuyFood.Models
         {
             int kq = db.Database.SqlQuery<int>("select MaKH from KhachHang where TenDangNhap = @tendangnhap",
                         new SqlParameter("@tendangnhap", TenDangNhap)).FirstOrDefault();
+            return kq;
+        }
+        public KhachHang LayThongTinKhachHang(int MaKH)
+        {
+            KhachHang kq = db.KhachHangs.SqlQuery("select * from KhachHang where MaKH = @makh", 
+                new SqlParameter("@makh", MaKH)).FirstOrDefault();
             return kq;
         }
         public bool ThemKhachHang(ThongTinDangKyTaiKhoan temp)
