@@ -12,6 +12,9 @@ namespace Website_BuyFood.Models
         {
             db = new MyDBContext();
         }
+        //Huynh them de phan quyen admin
+        public string TenDangNhap { get; set; }
+        public string MatKhau { get; set; }
         public bool KiemTraDangNhap(TaiKhoan tk)
         {
             int kq = db.TaiKhoans.Count(x => x.TenDangNhap == tk.TenDangNhap && x.MatKhau == tk.MatKhau);
@@ -32,9 +35,9 @@ namespace Website_BuyFood.Models
             return false;
         }
         //Huynh kiem tra admin 
-        public bool kiemTraAdmin(TaiKhoan tk)
+        public bool kiemTraAdmin(string tenDangNhap,string matKhau, string permission)
         {
-            int kq = db.TaiKhoans.Count(x => x.TenDangNhap == tk.TenDangNhap && x.MatKhau == tk.MatKhau && x.LoaiTaiKhoan == "admin");
+            int kq = db.TaiKhoans.Count(x => x.TenDangNhap == tenDangNhap && x.MatKhau == matKhau && x.LoaiTaiKhoan == permission);
             if (kq > 0) return true;
             return false;
         }
