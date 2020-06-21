@@ -143,6 +143,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ChiTiet_GioHang.cs" />
+    <Compile Include="Models\DonHangAdmin.cs" />
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\GioHangDao.cs" />
     <Compile Include="Models\KhachHang.cs" />

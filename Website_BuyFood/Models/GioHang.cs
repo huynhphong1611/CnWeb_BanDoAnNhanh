@@ -23,6 +23,7 @@ namespace Website_BuyFood.Models
         public int? MaKH { get; set; }
 
         public int? TinhTrang { get; set; }
+        public int ThanhToan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTiet_GioHang> ChiTiet_GioHang { get; set; }

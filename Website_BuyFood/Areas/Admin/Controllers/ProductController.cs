@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Website_BuyFood.Models;
+using Website_BuyFood.Areas.Admin.Models;
 
 namespace Website_BuyFood.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
         private MyDBContext context = new MyDBContext();
+        [CheckPermission(permissionAdmin = "admin")]
         // GET: Admin/Product
         public ActionResult Index()
         {

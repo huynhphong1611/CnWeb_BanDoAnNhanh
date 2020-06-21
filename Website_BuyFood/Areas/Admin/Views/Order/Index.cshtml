@@ -1,7 +1,9 @@
-﻿
+﻿@using Website_BuyFood.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+    
+
 }
 
 
@@ -14,47 +16,37 @@
             <th>Email</th>
             <th>Đặt sản phẩm</th>
             <th>Số lượng</th>
-            <th>Địa chỉ</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái thanh toán</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>Phòng Văn Huỳnh</td>
-            <td>admin1@email.com</td>
-            <td>Humberger bò</td>
-            <td>2</td>
-            <td>Hoàn Kiếm - Hà Nội</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Nguyễn Thị Ngọc</td>
-            <td>admin1@email.com</td>
-            <td>Humberger bò</td>
-            <td>2</td>
-            <td>Hoàn Kiếm - Hà Nội</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Bùi Trung Tú</td>
-            <td>admin1@email.com</td>
-            <td>Humberger bò</td>
-            <td>2</td>
-            <td>Hoàn Kiếm - Hà Nội</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Trần Tuấn Anh</td>
-            <td>admin1@email.com</td>
-            <td>Humberger bò</td>
-            <td>2</td>
-            <td>Hoàn Kiếm - Hà Nội</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Nguyễn Ngọc Long</td>
-            <td>admin1@email.com</td>
-            <td>Humberger bò</td>
-            <td>2</td>
-            <td>Cầu Giấy - Hà Nội</td>
-        </tr>
+
+        @{
+            int i = 0;
+            string email = "@gmail.com";
+            LoadThongTinIndexAdmin loadThongTinIndexAdmin = new LoadThongTinIndexAdmin();
+            List<KhachHang> khachHangs = loadThongTinIndexAdmin.GetKhachHangs();
+            foreach (KhachHang khachHang in khachHangs)
+            {
+                List<DonHangAdmin> donHangAdmins = loadThongTinIndexAdmin.GetDonHangAdmins(khachHang.MaKH);
+
+                foreach (DonHangAdmin donHangAdmin in donHangAdmins)
+                {
+                    i += 1;
+                    donHangAdmin.TenDangNhap += email;
+                    double? tongTien = donHangAdmin.Soluong * donHangAdmin.DonGia;
+                    <tr>
+                        <td>@i</td>
+                        <td>@donHangAdmin.HoTen</td>
+                        <td>@donHangAdmin.TenDangNhap</td>
+                        <td>@donHangAdmin.TenMonAn</td>
+                        <td>@donHangAdmin.Soluong</td>
+                        <td>@tongTien</td>
+                        <td>@donHangAdmin.TrangThaiThanhToan</td>
+                    </tr>
+                }
+
+            }
+        }
+
     </table>
 </div>

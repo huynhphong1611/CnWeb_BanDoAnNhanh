@@ -54,6 +54,38 @@ namespace Website_BuyFood.Models
             var model = db.KhachHangs.Where(x => x.TenDangNhap != null).ToList();
             return model;
         }
-        
+
+        public List<DonHangAdmin> GetDonHangAdmins(int maKH)
+        {
+            try
+            {
+              
+                var model = from a in db.KhachHangs
+                            join b in db.GioHangs
+                            on a.MaKH equals b.MaKH
+                            join c in db.ChiTiet_GioHang
+                            on b.MaGioHang equals c.MaGioHang
+                            join d in db.MonAns
+                            on c.MaMonAn equals d.MaMon
+                            where (a.MaKH == maKH && b.TinhTrang == 1) 
+                            select new DonHangAdmin()
+                            {
+                                HoTen = a.HoTen,
+                                TenMonAn = d.TenMon,
+                                TenDangNhap = a.TenDangNhap,
+                                Soluong = c.SoLuong,
+                                DonGia = c.DonGia,
+                                TrangThaiThanhToan = b.ThanhToan
+                            };
+                return model.ToList();
+            }
+            catch
+            {
+                List<DonHangAdmin> kq = new List<DonHangAdmin>();
+                return kq;
+            }
+        }
+
+
     }
 }
