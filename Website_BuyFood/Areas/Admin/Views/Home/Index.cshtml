@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
     LoadThongTinIndexAdmin loadThongTinIndexAdmin = new LoadThongTinIndexAdmin();
-    //int tongDoanhThu = loadThongTinIndexAdmin.tongDoangThu();
+    int tongDoanhThu = loadThongTinIndexAdmin.tongDoangThu();
     int soNguoiDatHang = loadThongTinIndexAdmin.soNguoiDatHang();
     int soSanPhanDaBan = loadThongTinIndexAdmin.soSanPhamDaBan();
     int soNguoiDangKi = loadThongTinIndexAdmin.soNguoiDangKi();
@@ -28,7 +28,7 @@
             <p style="text-align: right; color: black;">Tổng doanh thu</p>
             <br>
             <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
-                Tổng doanh thu VNĐ
+                @tongDoanhThu VNĐ
             </h3>
         </div>
     </div>
@@ -170,32 +170,20 @@
     <div class="content-header" style="color: black; text-align: center; font-size: 30px; font-family: monospace;">ĐƠN ĐẶT HÀNG</div>
     <table>
         <tr>
-            <th>STT</th>
+            <th>#</th>
             <th>Tên khách hàng</th>
-            <th>SĐT</th>
+            <th>Email</th>
+            <th>Đặt sản phẩm</th>
+            <th>Số lượng</th>
             <th>Địa chỉ</th>
-            <th>Hành động</th>            
         </tr>
         <tr>
             <td>1</td>
             <td>Phòng Văn Huỳnh</td>
-            <td>01232132</td>
+            <td>admin1@email.com</td>
+            <td>Humberger bò</td>
+            <td>2</td>
             <td>Hoàn Kiếm - Hà Nội</td>
-            <td>
-                <div class="table-data-feature">
-
-                    <button class="Khoa item" title="Lock">
-                        <i class="fas fa-lock"></i>
-                    </button>
-                    <button class="Khoa item" title="Lock">
-                        <i class="fas fa-lock"></i>
-                    </button>
-                    <button class="Khoa item" title="Lock">
-                        <i class="fas fa-lock"></i>
-                    </button>
-                </div>
-            </td>
-            
         </tr>
         <tr>
             <td>2</td>
