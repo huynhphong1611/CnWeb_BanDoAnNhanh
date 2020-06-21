@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -66,6 +67,47 @@ namespace Website_BuyFood.Areas.Admin.Controllers
                 ins.DonGia = data.DonGia;
                 context.MonAns.Add(ins);
                 context.SaveChanges();
+            }
+            return RedirectToAction("index", "home");
+        }
+        public ActionResult viewedit(int? maMon)
+        {
+            if(maMon != null)
+                return PartialView("_Viewedit", context.MonAns.Where(s => s.MaMon == maMon).FirstOrDefault());
+            else   
+                return PartialView("_Viewedit", context.MonAns.Where(s => s.MaMon == 1).FirstOrDefault());
+        }
+
+        public ActionResult delete(int? maMon)
+        {
+            context.MonAns.Remove(context.MonAns.Find(maMon));
+            context.SaveChanges();
+            return RedirectToAction("index", "home");
+        }
+        public ActionResult edit(MonAn data,HttpPostedFileBase file)
+        {
+            var monAn = context.MonAns.FirstOrDefault(c => c.MaMon.Equals(data.MaMon));
+            if (file != null)
+            {
+                if (monAn != null)
+                {
+                    string path = Server.MapPath("/Content/images/" + file.FileName);
+                    file.SaveAs(path);
+
+                    monAn.TenMon = data.TenMon;
+                    monAn.DonGia = data.DonGia;
+                    monAn.LinkAnh = file.FileName;
+                    context.SaveChanges();
+                }
+            }
+            else
+            {
+                if (monAn != null)
+                {
+                    monAn.TenMon = data.TenMon;
+                    monAn.DonGia = data.DonGia;
+                    context.SaveChanges();
+                }
             }
             return RedirectToAction("index", "home");
         }

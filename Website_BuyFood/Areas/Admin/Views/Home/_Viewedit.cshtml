@@ -1,0 +1,42 @@
+﻿@model Website_BuyFood.Models.MonAn
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Thêm sản phẩm</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="productName">Tên sản phẩm</label>
+                <input class="form-control" id="productName" name="TenMon" value="@Model.TenMon">
+            </div>
+            <div class="form-group">
+                <label for="price">Đơn giá</label>
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control" id="price" name="DonGia" value="@Model.DonGia">
+                    </div>
+                    <div class="col col-lg-3">
+                        <select id="currencyUnit" class="form-control">
+                            <option selected>VNĐ</option>
+                            <option>USD</option>
+                            <option>EUR</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="photo">Hình ảnh sản phẩm</label>
+                <img src="~/Content/images/@Model.LinkAnh" class="img-responsive" alt="Berry Lace Dress">
+                <input value="@Model.LinkAnh" readonly="readonly" style="border:none;outline:none;" />
+                <input type="file" class="form-control-file" id="photo" name="file">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-primary">Lưu sản phẩm</button>
+        </div>
+    </div>
+</div>
