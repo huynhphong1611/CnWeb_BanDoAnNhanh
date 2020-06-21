@@ -1,6 +1,6 @@
 ﻿@using Website_BuyFood.Models
 @using Website_BuyFood.Common;
-
+@model Website_BuyFood.ViewModel.DatHang
 @{
     /**/
 
@@ -46,6 +46,7 @@
     {
         if (maKH != 0)
         {
+            <input type="text" style="visibility:hidden;" name="MaKH" value="@maKH" />
             <div class="form-group">
                 <label>Họ và tên:</label>
                 <input type="text" class="form-control" name="HoTen" value="@kh.HoTen" required="">

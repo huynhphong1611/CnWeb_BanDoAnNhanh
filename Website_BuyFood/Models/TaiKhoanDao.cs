@@ -5,6 +5,7 @@ using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using Website_BuyFood.Common;
 using Website_BuyFood.ViewModel;
 
 namespace Website_BuyFood.Models
@@ -21,7 +22,8 @@ namespace Website_BuyFood.Models
         public string MatKhau { get; set; }
         public bool KiemTraDangNhap(TaiKhoan tk)
         {
-            int kq = db.TaiKhoans.Count(x => x.TenDangNhap == tk.TenDangNhap && x.MatKhau == tk.MatKhau);
+            string passhash = CryptoLib.MD5Hash(tk.MatKhau);
+            int kq = db.TaiKhoans.Count(x => x.TenDangNhap == tk.TenDangNhap && x.MatKhau == passhash);
             if (kq > 0) return true;
             return false;
         }
@@ -31,7 +33,7 @@ namespace Website_BuyFood.Models
                 new SqlParameter("hoten", tk.HoTen),
                 new SqlParameter("sdt", tk.SDT),
                 new SqlParameter("tendangnhap", tk.TenDangNhap),
-                new SqlParameter("matkhau", tk.MatKhau)
+                new SqlParameter("matkhau", CryptoLib.MD5Hash(tk.MatKhau))
             );
         }
         //Huynh kiem tra admin 
