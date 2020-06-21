@@ -13,7 +13,7 @@ namespace Website_BuyFood.Areas.Admin.Models
         public string permissionAdmin { get; set; }
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            UserLogin userLogin = (UserLogin)HttpContext.Current.Session[Common.CommonConstants.USER_SESSION];
+            UserLogin userLogin = (UserLogin)HttpContext.Current.Session[Common.CommonConstants.ADMIN_SESSION];
             TaiKhoanDao tkDao = new TaiKhoanDao();
             if (userLogin != null && tkDao.kiemTraAdmin(userLogin.TenDangNhap, userLogin.MatKhau, permissionAdmin))
             {
