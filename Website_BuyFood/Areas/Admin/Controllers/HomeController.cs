@@ -29,7 +29,7 @@ namespace Website_BuyFood.Areas.Admin.Controllers
                 var userSesstion = new UserLogin();
                 userSesstion.TenDangNhap = taiKhoanDao.TenDangNhap;
                 userSesstion.MatKhau = taiKhoanDao.MatKhau;
-                Session.Add(CommonConstants.USER_SESSION, userSesstion);
+                Session.Add(CommonConstants.ADMIN_SESSION, userSesstion);
                 return RedirectToAction("Index", "Home");
             }
             return View();
