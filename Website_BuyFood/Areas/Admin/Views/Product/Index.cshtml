@@ -1,0 +1,88 @@
+﻿@using Website_BuyFood.Models
+@model List<MonAn>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div id="content-home" class="content">
+    <div id="id-content-product" class="content-product" style="display:inline;">
+        <div class="content-header" style="color: black; text-align: center; font-size: 30px; font-family: monospace;">SẢN PHẨM</div>
+        <div class="image-gird">
+            <div class="gird-box" data-toggle="modal" data-target="#exampleModal" onclick="addProduct()">
+                <img class="image-add-product" src="/Content/ContentAdmin/img/icon-add.png" />
+            </div>
+            <link href="~/Content/css/style-shop.css" rel="stylesheet" />
+            @{
+                foreach (MonAn monAn in Model)
+                {
+                    <div>
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="~/Content/images/@monAn.LinkAnh" class="img-responsive" alt="Berry Lace Dress">
+                                <div>
+                                    <a data-ajax="true" data-ajax-method="GET" data-ajax-mode="replace" data-toggle="modal" data-ajax-update="#exampleModalEdit" data-target="#exampleModalEdit" class="btn btn-default fancybox-button" href="/admin/home/viewedit?mamon=@monAn.MaMon">Sửa</a>
+                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');" class="btn btn-default fancybox-fast-view" href="/Admin/Home/delete?maMon=@monAn.MaMon">Xóa</a>
+                                </div>
+                            </div>
+                            <h3><a href="shop-item.html">@monAn.TenMon @monAn.DonGia</a></h3>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <form action="@Url.Action("add","Product")" method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Thêm sản phẩm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="productName">Tên sản phẩm</label>
+                            <input class="form-control" id="productName" name="TenMon">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Đơn giá</label>
+                            <div class="row">
+                                <div class="col">
+                                    <input class="form-control" id="price" name="DonGia">
+                                </div>
+                                <div class="col col-lg-3">
+                                    <select id="currencyUnit" class="form-control">
+                                        <option selected>VNĐ</option>
+                                        <option>USD</option>
+                                        <option>EUR</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="photo">Hình ảnh sản phẩm</label>
+                            <input type="file" class="form-control-file" id="photo" name="file">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Lưu sản phẩm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="@Url.Action("edit","Product")" method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            @{Html.RenderAction("viewedit");}
+        </div>
+    </form>
+</div>

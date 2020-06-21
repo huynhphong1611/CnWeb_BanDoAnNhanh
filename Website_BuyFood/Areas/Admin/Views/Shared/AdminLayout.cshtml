@@ -68,16 +68,16 @@
     <div class="action-bar-menu" id="actionbar-menu">
         <ul>
             <li>
-                <a href="~/Admin/Home/Index"><i class="fas fa-house-user"></i>Home</a>
+                <a href="@Url.Action("index","home")"><i class="fas fa-house-user"></i>Home</a>
             </li>
             <li>
-                <a onclick="onClickProduct()"><i class="fab fa-product-hunt"></i>Sản phẩm</a>
+                <a href="@Url.Action("index","product")"><i class="fab fa-product-hunt"></i>Sản phẩm</a>
             </li>
             <li>
-                <a onclick="onClickUsers()"><i class="fas fa-users"></i>Khách hàng</a>
+                <a href="~/Admin/User/Index"><i class="fas fa-users"></i>Khách hàng</a>
             </li>
             <li>
-                <a onclick="onClickOrders()"><i class="fab fa-first-order"></i>Đơn đặt hàng</a>
+                <a href="~/Admin/Order/Index"><i class="fab fa-first-order"></i>Đơn đặt hàng</a>
             </li>
         </ul>
     </div>

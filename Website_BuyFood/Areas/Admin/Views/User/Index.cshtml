@@ -1,0 +1,45 @@
+﻿@using Website_BuyFood.Models
+@model List<MonAn>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+    LoadThongTinIndexAdmin loadThongTinIndexAdmin = new LoadThongTinIndexAdmin();
+    int tongDoanhThu = loadThongTinIndexAdmin.tongDoangThu();
+    int soNguoiDatHang = loadThongTinIndexAdmin.soNguoiDatHang();
+    int soSanPhanDaBan = loadThongTinIndexAdmin.soSanPhamDaBan();
+    int soNguoiDangKi = loadThongTinIndexAdmin.soNguoiDangKi();
+    int soSanPham = loadThongTinIndexAdmin.soSanPhamHienTai();
+
+    List<KhachHang> khachHangs = loadThongTinIndexAdmin.GetKhachHangs();
+}
+
+
+
+<div id="id-content-user" class="content-user" style="display:inline;">
+    <div class="content-header" style="color: black; text-align: center; font-size: 30px; font-family: monospace;">KHÁCH HÀNG</div>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Tên khách hàng</th>
+            <th>Email</th>
+            <th>Sản phẩm đã mua</th>
+        </tr>
+
+        @{
+            int i = 0;
+            string email = "@gmail.com";
+            foreach (KhachHang khachHang in khachHangs)
+            {
+                i += 1;
+                khachHang.TenDangNhap += email;
+                int ramdom = new Random().Next(0, 10);
+                <tr>
+                    <td>@i</td>
+                    <td>@khachHang.HoTen</td>
+                    <td>@khachHang.TenDangNhap</td>
+                    <td>@ramdom</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
