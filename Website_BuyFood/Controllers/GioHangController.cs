@@ -62,9 +62,9 @@ namespace Website_BuyFood.Controllers
             });
         }
         [HttpPost]
-        public ActionResult DatHang(string HoTen,string SDT,string DiaChi)
+        public ActionResult DatHang(DatHang temp)
         {
-            GHD.DatHang(1, HoTen, SDT, DiaChi);
+            GHD.DatHang(temp);
             return RedirectToAction("Menu","Home");
         }
     }

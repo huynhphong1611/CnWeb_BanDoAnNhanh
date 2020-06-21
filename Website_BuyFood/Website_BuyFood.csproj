@@ -153,6 +153,7 @@
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Models\TaiKhoanDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\DatHang.cs" />
     <Compile Include="ViewModel\ThemVaoGio.cs" />
     <Compile Include="ViewModel\ThongTinDangKyTaiKhoan.cs" />
     <Compile Include="ViewModel\ThongTinTungMon.cs" />

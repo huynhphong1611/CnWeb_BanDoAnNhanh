@@ -76,13 +76,13 @@ namespace Website_BuyFood.Models
 
             }
         }
-        public void DatHang(int MaKH, string HoTen,string SDT, string DiaChi)
+        public void DatHang(DatHang temp)
         {
             db.Database.ExecuteSqlCommand("exec DatHang @makh,@hoten,@sdt,@diachi",
-                new SqlParameter("makh", MaKH),
-                new SqlParameter("hoten", HoTen),
-                new SqlParameter("sdt", SDT),
-                new SqlParameter("diachi", DiaChi)
+                new SqlParameter("makh", temp.MaKH),
+                new SqlParameter("hoten", temp.HoTen),
+                new SqlParameter("sdt", temp.SDT),
+                new SqlParameter("diachi", temp.DiaChi)
             );
         }
     }
