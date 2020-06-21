@@ -20,7 +20,7 @@ namespace Website_BuyFood.Models
         {
             try
             {
-                GioHang temp = db.GioHangs.SqlQuery("select * from GioHang where TinhTrang = 0").FirstOrDefault<GioHang>();
+                GioHang temp = db.GioHangs.SqlQuery("select * from GioHang where TinhTrang = 0 and MaKH = @makh", new SqlParameter("@makh", MaKH)).FirstOrDefault<GioHang>();
                 var model = from a in db.ChiTiet_GioHang
                             join b in db.MonAns
                             on a.MaMonAn equals b.MaMon
@@ -33,7 +33,6 @@ namespace Website_BuyFood.Models
                                 LinkAnh = b.LinkAnh,
                                 SoLuong = a.SoLuong
                             };
-
                 return model.ToList();
             }
             catch

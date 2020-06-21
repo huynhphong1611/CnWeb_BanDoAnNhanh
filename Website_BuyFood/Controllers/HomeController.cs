@@ -22,20 +22,7 @@ namespace Website_BuyFood.Controllers
         public JsonResult DangNhap(TaiKhoan tk)
         {
             TaiKhoanDao tkd = new TaiKhoanDao();
-            if (tkd.kiemTraAdmin(tk))
-            {
-                //Huynh chuyen huong sang admin 
-                var userSesstion = new UserLogin();
-                userSesstion.TenDangNhap = tk.TenDangNhap;
-                userSesstion.LoaiTaiKhoan = "admin";
-                Session.Add(CommonConstants.USER_SESSION, userSesstion);
-                return Json(new
-                {
-                    status = true
-                });
-
-
-            } else if (tkd.KiemTraDangNhap(tk) == true && ModelState.IsValid)
+            if (tkd.KiemTraDangNhap(tk) == true && ModelState.IsValid)
             {
                 var userSesstion = new UserLogin();
                 userSesstion.TenDangNhap = tk.TenDangNhap;
@@ -57,16 +44,13 @@ namespace Website_BuyFood.Controllers
         public JsonResult DangKy(ThongTinDangKyTaiKhoan tk)
         {
             TaiKhoanDao tkd = new TaiKhoanDao();           
-            if (tkd.DangKyTaiKhoan(tk.TenDangNhap,tk.MatKhau) == true && ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                KhachHangDao khd = new KhachHangDao();
-                if(khd.ThemKhachHang(tk) == true)
+                tkd.DangKyTaiKhoan(tk);
+                return Json(new
                 {
-                    return Json(new
-                    {
-                        status = true
-                    });
-                }                                
+                    status = true
+                });                                    
             }
             return Json(new
             {

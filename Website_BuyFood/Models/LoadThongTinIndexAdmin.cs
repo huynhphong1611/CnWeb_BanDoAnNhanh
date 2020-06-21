@@ -15,7 +15,16 @@ namespace Website_BuyFood.Models
         }
         public int tongDoangThu()
         {
-            int kq = db.Database.SqlQuery<int>("SELECT Sum(tt.TongTien) FROM dbo.ThanhToan tt").FirstOrDefault();
+            int kq;
+            try
+            {
+               kq = db.Database.SqlQuery<int>("SELECT Sum(tt.TongTien) FROM dbo.ThanhToan tt").FirstOrDefault();
+            }
+            catch
+            {
+                kq = 0 ; 
+            }
+            
             return kq;
         }
         public int soNguoiDatHang()
