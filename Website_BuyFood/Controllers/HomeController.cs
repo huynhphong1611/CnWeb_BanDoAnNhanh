@@ -44,16 +44,13 @@ namespace Website_BuyFood.Controllers
         public JsonResult DangKy(ThongTinDangKyTaiKhoan tk)
         {
             TaiKhoanDao tkd = new TaiKhoanDao();           
-            if (tkd.DangKyTaiKhoan(tk.TenDangNhap,tk.MatKhau) == true && ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                KhachHangDao khd = new KhachHangDao();
-                if(khd.ThemKhachHang(tk) == true)
+                tkd.DangKyTaiKhoan(tk);
+                return Json(new
                 {
-                    return Json(new
-                    {
-                        status = true
-                    });
-                }                                
+                    status = true
+                });                                    
             }
             return Json(new
             {

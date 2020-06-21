@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using Website_BuyFood.ViewModel;
 
 namespace Website_BuyFood.Models
 {
@@ -21,18 +25,14 @@ namespace Website_BuyFood.Models
             if (kq > 0) return true;
             return false;
         }
-        public bool DangKyTaiKhoan(string TenDangNhap, string MatKhau)
+        public void DangKyTaiKhoan(ThongTinDangKyTaiKhoan tk)
         {
-            var TaiKhoan = new TaiKhoan()
-            {
-                TenDangNhap = TenDangNhap,
-                MatKhau = MatKhau,
-                LoaiTaiKhoan = "khachhang"
-            };
-            db.TaiKhoans.Add(TaiKhoan);
-            int kq = db.SaveChanges();
-            if (kq > 0) return true;
-            return false;
+            db.Database.ExecuteSqlCommand("exec DangKyTaiKhoan @hoten,@sdt,@tendangnhap,@matkhau",
+                new SqlParameter("hoten", tk.HoTen),
+                new SqlParameter("sdt", tk.SDT),
+                new SqlParameter("tendangnhap", tk.TenDangNhap),
+                new SqlParameter("matkhau", tk.MatKhau)
+            );
         }
         //Huynh kiem tra admin 
         public bool kiemTraAdmin(string tenDangNhap,string matKhau, string permission)
