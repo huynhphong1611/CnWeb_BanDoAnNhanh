@@ -15,6 +15,7 @@ namespace Website_BuyFood.Models
         public int? Soluong { get; set; }
         public int? DonGia { get; set; }
         public int TrangThaiThanhToan { get; set; }
+        public int MaGH { get; set; }
 
     }
 }

@@ -18,5 +18,19 @@ namespace Website_BuyFood.Areas.Admin.Controllers
             var modelSanPham = context.MonAns.Where(x => x.TenMon != null).ToList();
             return View(modelSanPham);
         }
+        [HttpPost]
+        public ActionResult Index(int MaKH)
+        {
+            Console.WriteLine("Index makh " + MaKH);
+            return RedirectToAction("Index", "Home");
+        }
+        public JsonResult ThanhToan(int MaKH,int MaNV,int MaGH)
+        {
+            
+            return Json(new
+            {
+                status = true
+            });
+        }
     }
 }

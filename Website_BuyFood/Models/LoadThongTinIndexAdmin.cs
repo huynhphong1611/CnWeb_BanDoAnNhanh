@@ -75,7 +75,8 @@ namespace Website_BuyFood.Models
                                 TenDangNhap = a.TenDangNhap,
                                 Soluong = c.SoLuong,
                                 DonGia = c.DonGia,
-                                TrangThaiThanhToan = b.ThanhToan
+                                TrangThaiThanhToan = b.ThanhToan,
+                                MaGH = b.MaGioHang
                             };
                 return model.ToList();
             }

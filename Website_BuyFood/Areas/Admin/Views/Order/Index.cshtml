@@ -18,6 +18,7 @@
             <th>Số lượng</th>
             <th>Tổng tiền</th>
             <th>Trạng thái thanh toán</th>
+            <th>Thanh toán cho KH</th>
         </tr>
 
         @{
@@ -34,15 +35,28 @@
                     i += 1;
                     donHangAdmin.TenDangNhap += email;
                     double? tongTien = donHangAdmin.Soluong * donHangAdmin.DonGia;
-                    <tr>
-                        <td>@i</td>
-                        <td>@donHangAdmin.HoTen</td>
-                        <td>@donHangAdmin.TenDangNhap</td>
-                        <td>@donHangAdmin.TenMonAn</td>
-                        <td>@donHangAdmin.Soluong</td>
-                        <td>@tongTien</td>
-                        <td>@donHangAdmin.TrangThaiThanhToan</td>
-                    </tr>
+        <tr>
+            <td>@i</td>
+            <td>@donHangAdmin.HoTen</td>
+            <td>@donHangAdmin.TenDangNhap</td>
+            <td>@donHangAdmin.TenMonAn</td>
+            <td>@donHangAdmin.Soluong</td>
+            <td>@tongTien</td>
+            <td>@donHangAdmin.TrangThaiThanhToan</td>
+            @{
+                if (@donHangAdmin.TrangThaiThanhToan == 0)
+                {
+                    <td align='center'>
+                        
+
+
+                            <button type="submit" class="ThanhToan" data-MaKH="@khachHang.MaKH" data-MaNV="2" data-MaGH="@donHangAdmin.MaGH" name="MaKH" value="@khachHang.MaKH" style="width:100%">Thanh Toán</button>
+                           
+                        
+                     </td>
+                }
+            }
+        </tr>
                 }
 
             }
@@ -50,3 +64,22 @@
 
     </table>
 </div>
+<script>
+    $(document).ready(function () {
+        $(".ThanhToan").click(function () {
+            MaKH = $(this).data('MaKH');
+            MaNV=$(this).data('MaNV');
+            MaGH = $(this).data('MaGH');
+            alert('Thanh toán thành công');
+            $.ajax({
+                type: 'POST',
+                url: "/Order/ThanhToan",
+                data: { MaKH: MaKH, MaNV: MaNV, MaGH: MaGH },
+                success: function (response) {
+                    alert("Thanh toán thành công");
+                }
+            });
+            
+        })
+    });
+</script>
