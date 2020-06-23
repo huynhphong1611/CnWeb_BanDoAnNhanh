@@ -62,7 +62,7 @@ namespace Website_BuyFood.Areas.Admin.Controllers
         }
         public ActionResult edit(MonAn data, HttpPostedFileBase file)
         {
-            var monAn = context.MonAns.FirstOrDefault(c => c.MaMon.Equals(data.MaMon));
+            var monAn = context.MonAns.FirstOrDefault(c => c.MaMon.Equals(1));
             if (file != null)
             {
                 if (monAn != null)
