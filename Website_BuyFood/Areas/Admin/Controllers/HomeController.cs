@@ -31,6 +31,7 @@ namespace Website_BuyFood.Areas.Admin.Controllers
                 userSesstion.TenDangNhap = taiKhoanDao.TenDangNhap;
                 userSesstion.MatKhau = taiKhoanDao.MatKhau;
                 Session.Add(CommonConstants.ADMIN_SESSION, userSesstion);
+                // dang nhap dung tra ve trang homw
                 return RedirectToAction("Index", "Home");
             }
             return View();
