@@ -1,0 +1,123 @@
+﻿@using Website_BuyFood.Models
+@model List<MonAn>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+    LoadThongTinIndexAdmin loadThongTinIndexAdmin = new LoadThongTinIndexAdmin();
+    int tongDoanhThu = loadThongTinIndexAdmin.tongDoangThu();
+    int soNguoiDatHang = loadThongTinIndexAdmin.soNguoiDatHang();
+    int soSanPhanDaBan = loadThongTinIndexAdmin.soSanPhamDaBan();
+    int soNguoiDangKi = loadThongTinIndexAdmin.soNguoiDangKi();
+    int soSanPham = loadThongTinIndexAdmin.soSanPhamHienTai();
+
+    List<KhachHang> khachHangs = loadThongTinIndexAdmin.GetKhachHangs();
+
+
+}
+<script src="~/Scripts/jquery-3.5.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<div id="content-home" class="content-fluid">
+    <div class="block-header"><h2>HOME</h2></div>
+    <!-- doanh so -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-money-check-alt"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Tổng doanh thu</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @tongDoanhThu VNĐ
+            </h3>
+        </div>
+    </div>
+    <!-- tong so nguoi da dat hang -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-people-carry"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số người đặt hàng</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @soNguoiDatHang
+            </h3>
+        </div>
+    </div>
+    <!-- tong so nguoi san phan da ban   -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-cart-arrow-down"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số sản phẩm đã bán</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @soSanPhanDaBan
+            </h3>
+        </div>
+    </div>
+    <!-- tong so nguoi truy cap -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-users"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số người truy cập</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                1
+            </h3>
+        </div>
+    </div>
+    <!-- tong so nguoi nguoi da dang ki   -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fas fa-user-check"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số người đăng kí</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @soNguoiDangKi
+            </h3>
+        </div>
+    </div>
+    <!-- tong so san pham   -->
+    <div class="item-home">
+        <div class="img-item">
+            <span style="text-align: center; font-size: 35px; color: coral;">
+                <i class="fab fa-product-hunt"></i>
+            </span>
+        </div>
+        <div class="text-item">
+            <p style="text-align: right; color: black;">Số sản phẩm</p>
+            <br>
+            <h3 class="number-revenue" style="text-align: right ; font-size: 20px;font-style: inherit ; color: black;">
+                @soSanPham
+            </h3>
+        </div>
+    </div>
+</div>
+<div id="graph-home" class="graph-fluid">
+    <div class="block-header">
+        <h2>BIỂU ĐỒ DOANH THU</h2>
+        <!-- <button class="graph-doanh-thu-thang">Tháng</button>
+        <button class="graph-doanh-thu-năm">Năm</button> -->
+    </div>
+    <div id="graph-doanh-thu">
+        <script type="text/javascript">
+            drawGrahp();
+        </script>
+    </div>
+</div>

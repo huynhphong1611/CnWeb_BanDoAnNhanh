@@ -51,7 +51,7 @@ namespace Website_BuyFood.Areas.Admin.Controllers
             if (maMon != null)
                 return PartialView("_Viewedit", context.MonAns.Where(s => s.MaMon == maMon).FirstOrDefault());
             else
-                return PartialView("_Viewedit", context.MonAns.Where(s => s.MaMon == 1).FirstOrDefault());
+                return PartialView("_Viewedit", context.MonAns.Where(s => s.MaMon == 2).FirstOrDefault());
         }
 
         public ActionResult delete(int? maMon)
@@ -62,7 +62,7 @@ namespace Website_BuyFood.Areas.Admin.Controllers
         }
         public ActionResult edit(MonAn data, HttpPostedFileBase file)
         {
-            var monAn = context.MonAns.FirstOrDefault(c => c.MaMon.Equals(data.MaMon));
+            var monAn = context.MonAns.FirstOrDefault(c => c.MaMon.Equals(1));
             if (file != null)
             {
                 if (monAn != null)
