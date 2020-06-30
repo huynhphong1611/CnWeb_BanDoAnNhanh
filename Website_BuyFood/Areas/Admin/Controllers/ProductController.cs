@@ -56,6 +56,7 @@ namespace Website_BuyFood.Areas.Admin.Controllers
 
         public ActionResult delete(int? maMon)
         {
+            // xóa sản phẩm
             context.MonAns.Remove(context.MonAns.Find(maMon));
             context.SaveChanges();
             return RedirectToAction("index", "product");
@@ -85,6 +86,10 @@ namespace Website_BuyFood.Areas.Admin.Controllers
                     context.SaveChanges();
                 }
             }
+            return RedirectToAction("index", "product");
+        }
+        public ActionResult detail(MonAn data)
+        {
             return RedirectToAction("index", "product");
         }
     }
